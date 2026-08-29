@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NYPD SPIDER-TASKFORCE // CLASSIFIED</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 20%, #101b2b 0%, #070b12 55%, #030508 100%);
+    color: #d7e4f2;
+    font-family: 'Share Tech Mono', monospace;
+    padding: 30px;
+}
+
+/* TOP WARNING */
+
+.warning {
+    width: 100%;
+    border-bottom: 1px solid #34485f;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #c94a4a;
+    margin-bottom: 25px;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    border: 1px solid #34485f;
+    background: rgba(8, 14, 23, 0.95);
+    padding: 25px;
+    box-shadow:
+        0 0 35px rgba(50, 90, 140, 0.12),
+        inset 0 0 40px rgba(50, 90, 140, 0.04);
+}
+
+.department {
+    color: #6d91b8;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.title {
+    margin-top: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #edf5ff;
+}
+
+.subtitle {
+    margin-top: 5px;
+    color: #75899e;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.classified {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 7px 12px;
+    border: 1px solid #c94a4a;
+    color: #e06464;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+/* PANELS */
+
+.panel {
+    border: 1px solid #34485f;
+    background: rgba(8, 14, 23, 0.92);
+    padding: 22px;
+}
+
+.panel.full {
+    grid-column: span 2;
+}
+
+.panel-title {
+    color: #78a7d3;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #253649;
+    padding-bottom: 10px;
+    margin-bottom: 17px;
+}
+
+p {
+    color: #9fb0c2;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 8px 0;
+}
+
+/* SUBJECT DATA */
+
+.data {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.label {
+    color: #60758b;
+    letter-spacing: 1px;
+}
+
+.value {
+    color: #d5e3f1;
+}
+
+.red {
+    color: #e06464;
+}
+
+.yellow {
+    color: #d6b85c;
+}
+
+/* ALERT BOX */
+
+.alert {
+    border-left: 3px solid #c94a4a;
+    background: rgba(180, 50, 50, 0.06);
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.alert-title {
+    color: #e06464;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+/* TERMINAL */
+
+.terminal {
+    background: #030609;
+    border: 1px solid #263646;
+    padding: 18px;
+    min-height: 180px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #8aa6c0;
+}
+
+.green {
+    color: #72c69b;
+}
+
+.blue {
+    color: #78a7d3;
+}
+
+.redtext {
+    color: #e06464;
+}
+
+/* BUTTON */
+
+.button-area {
+    margin-top: 22px;
+    text-align: center;
+}
+
+button {
+    background: #142b42;
+    color: #d9e9f7;
+    border: 1px solid #52789d;
+    padding: 14px 35px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1d405f;
+    box-shadow: 0 0 15px rgba(80, 140, 200, 0.2);
+}
+
+/* HIDDEN FILE */
+
+.hidden-file {
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #52789d;
+    padding: 20px;
+    background: rgba(60, 100, 140, 0.06);
+}
+
+.hidden-file.show {
+    display: block;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #34485f;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+/* BLINK */
+
+.blink {
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel.full {
+        grid-column: span 1;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .data {
+        grid-template-columns: 110px 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="warning">
+    ⚠ NYPD INTERNAL SYSTEM // UNAUTHORIZED ACCESS IS A FEDERAL OFFENSE ⚠
+</div>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="department">
+            NEW YORK CITY POLICE DEPARTMENT
+        </div>
+
+        <div class="title">
+            SPIDER-TASKFORCE
+        </div>
+
+        <div class="subtitle">
+            SPECIAL INVESTIGATIONS DIVISION // PROJECT OMEGA
+        </div>
+
+        <div class="classified">
+            CLASSIFICATION: RESTRICTED // EYES ONLY
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION GRID -->
+
+    <div class="grid">
+
+        <!-- CASE STATUS -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+                CASE STATUS
+            </div>
+
+            <div class="data">
+
+                <div class="label">CASE ID</div>
+                <div class="value">NYC-OMEGA-042</div>
+
+                <div class="label">STATUS</div>
+                <div class="value red">ACTIVE</div>
+
+                <div class="label">THREAT LEVEL</div>
+                <div class="value red">CRITICAL</div>
+
+                <div class="label">LOCATION</div>
+                <div class="value yellow">UNKNOWN</div>
+
+                <div class="label">LAST UPDATE</div>
+                <div class="value">03:17:42 EST</div>
+
+                <div class="label">LEAD UNIT</div>
+                <div class="value">SPIDER-TASKFORCE</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUBJECT -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+                SUBJECT PROFILE
+            </div>
+
+            <div class="data">
+
+                <div class="label">DESIGNATION</div>
+                <div class="value">SPECIMEN-01</div>
+
+                <div class="label">KNOWN ALIAS</div>
+                <div class="value">SPIDER-MAN</div>
+
+                <div class="label">ORIGIN</div>
+                <div class="value yellow">UNCONFIRMED</div>
+
+                <div class="label">BIOLOGICAL</div>
+                <div class="value red">ALTERED</div>
+
+                <div class="label">MOVEMENT</div>
+                <div class="value">URBAN / AERIAL</div>
+
+                <div class="label">CURRENT STATUS</div>
+                <div class="value red">MISSING</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INCIDENT -->
+
+        <div class="panel full">
+
+            <div class="panel-title">
+                INCIDENT SUMMARY
+            </div>
+
+            <p>
+                At approximately 02:43 EST, NYPD communications received
+                multiple reports of an unidentified individual moving across
+                Manhattan at extreme speed.
+            </p>
+
+            <p>
+                Initial reports were dismissed as unreliable. At 02:51 EST,
+                however, security footage from an Oscorp Industries facility
+                recorded a breach originating from a restricted biological
+                research sector.
+            </p>
+
+            <p>
+                Three minutes later, all surveillance feeds connected to the
+                facility were terminated.
+            </p>
+
+            <div class="alert">
+
+                <div class="alert-title">
+                    ⚠ PRIORITY ALERT
+                </div>
+
+                Oscorp has officially denied the existence of Project Omega.
+                Internal NYPD intelligence indicates otherwise.
+
+            </div>
+
+        </div>
+
+
+        <!-- TERMINAL -->
+
+        <div class="panel full">
+
+            <div class="panel-title">
+                RECOVERED TRANSMISSION
+            </div>
+
+            <div class="terminal">
+
+                <div>
+                    <span class="green">[03:12:07]</span>
+                    SIGNAL DETECTED...
+                </div>
+
+                <div>
+                    <span class="green">[03:12:08]</span>
+                    SOURCE: UNKNOWN
+                </div>
+
+                <div>
+                    <span class="blue">[03:12:09]</span>
+                    ENCRYPTED PACKET RECEIVED
+                </div>
+
+                <br>
+
+                <div>
+                    <span class="redtext">WARNING:</span>
+                    DATA CORRUPTED
+                </div>
+
+                <div>
+                    Partial transmission recovered:
+                </div>
+
+                <br>
+
+                <div>
+                    "...they weren't supposed to find the lab..."
+                </div>
+
+                <div>
+                    "...the specimen isn't the only thing that escaped..."
+                </div>
+
+                <div>
+                    "...look beneath the surface..."
+                </div>
+
+                <div>
+                    "...the answer is already inside the file..."
+                    <span class="blink">_</span>
+                </div>
+
+            </div>
+
+
+            <div class="button-area">
+
+                <button onclick="beginAnalysis()">
+                    BEGIN FILE ANALYSIS
+                </button>
+
+            </div>
+
+
+            <div id="hiddenFile" class="hidden-file">
+
+                <div class="panel-title">
+                    ANALYSIS MODULE UNLOCKED
+                </div>
+
+                <p>
+                    The recovered transmission contains additional encrypted
+                    information.
+                </p>
+
+                <p>
+                    <span class="red">
+                    WARNING:
+                    </span>
+                    Manual analysis required.
+                </p>
+
+                <p>
+                    Your Game Guide will provide the next instruction.
+                </p>
+
+                <br>
+
+                <div class="terminal">
+
+                    <div>
+                        <span class="green">SYSTEM:</span>
+                        DECRYPTION MODULE READY
+                    </div>
+
+                    <div>
+                        <span class="green">SYSTEM:</span>
+                        WAITING FOR INPUT...
+                    </div>
+
+                    <div>
+                        <span class="blue">ACCESS LEVEL:</span>
+                        TASKFORCE
+                    </div>
+
+                    <div>
+                        <span class="redtext">NEXT OBJECTIVE:</span>
+                        LOCATE THE ESCAPED SPECIMEN
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        NYPD SPECIAL INVESTIGATIONS DIVISION
+        // SPIDER-TASKFORCE // NYC-OMEGA-042
+    </div>
+
+</div>
+
+
+<script>
+
+function beginAnalysis() {
+
+    const file = document.getElementById("hiddenFile");
+
+    file.classList.add("show");
+
+    // Scroll smoothly to the newly revealed file
+    setTimeout(function() {
+
+        file.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 100);
+
+}
+
+</script>
+
+</body>
+</html>

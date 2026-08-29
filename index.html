@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSCORP MAINFRAME LOGIN</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap');
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 20%, #0e1a14 0%, #060a08 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    color: #8fe3b6;
+    padding: 20px;
+  }
+  .panel {
+    width: 100%;
+    max-width: 460px;
+    border: 1px solid #2f5f45;
+    background: rgba(10, 20, 15, 0.9);
+    box-shadow: 0 0 40px rgba(60, 200, 130, 0.15), inset 0 0 60px rgba(60,200,130,0.04);
+    padding: 32px 30px 26px;
+  }
+  .brand {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-size: 26px;
+    color: #cfead9;
+    text-align: center;
+  }
+  .sub {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #4f8f6c;
+    margin-top: 4px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid #234030;
+    padding-bottom: 18px;
+  }
+  label { display: block; font-size: 12px; letter-spacing: 2px; color: #6fbd91; margin-bottom: 6px; margin-top: 18px; }
+  input[type=text], input[type=password] {
+    width: 100%;
+    background: #08120d;
+    border: 1px solid #2f5f45;
+    color: #d7ffe6;
+    padding: 10px 12px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 2px;
+    outline: none;
+  }
+  input:focus { border-color: #6fe3a3; box-shadow: 0 0 8px rgba(111,227,163,0.4); }
+  button {
+    width: 100%;
+    margin-top: 26px;
+    background: #1c3f2b;
+    color: #cfead9;
+    border: 1px solid #4f8f6c;
+    padding: 12px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  button:hover { background: #2a5c3d; }
+  .msg { margin-top: 18px; font-size: 13px; letter-spacing: 1px; min-height: 20px; text-align: center; }
+  .msg.err { color: #e0574f; }
+  .msg.ok { color: #6fe3a3; }
+  .granted {
+    display: none;
+    margin-top: 18px;
+    border: 1px solid #4f8f6c;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #d7ffe6;
+    background: rgba(111,227,163,0.06);
+  }
+  .granted.show { display: block; }
+  .blink { animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .footer { text-align: center; margin-top: 22px; font-size: 10px; letter-spacing: 2px; color: #2f5f45; }
+  .danger { color: #e0574f; }
+  .danger-text { color: #e0574f; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="brand">OSCORP MAINFRAME</div>
+    <div class="sub">RESTRICTED ACCESS &mdash; AUTHORIZATION REQUIRED</div>
+
+    <label for="user">USERNAME</label>
+    <input type="text" id="user" autocomplete="off" spellcheck="false">
+
+    <label for="pass">PASSWORD</label>
+    <input type="password" id="pass" autocomplete="off">
+
+    <button onclick="tryLogin()">AUTHENTICATE</button>
+
+    <div id="msg" class="msg"></div>
+
+    <div id="granted" class="granted">
+      ACCESS GRANTED.<br>
+      PROJECT OMEGA credentials restored.<br>
+      Escaped specimen location: <span style="color:#e0574f">UNKNOWN</span>.<br><br>
+      Report to your Game Guide immediately to receive the NYPD Spider-Taskforce File.
+      <span class="blink">_</span>
+    </div>
+
+    <div class="footer">OSCORP INDUSTRIES &mdash; SECURE TERMINAL v4.2</div>
+  </div>
+
+<script>
+  const VALID_USER = "PROJECTOMEGA";
+  const VALID_PASS = "42ARACHNID";
+
+  function tryLogin() {
+    const u = document.getElementById('user').value.trim().toUpperCase();
+    const p = document.getElementById('pass').value.trim().toUpperCase();
+    const msg = document.getElementById('msg');
+    const granted = document.getElementById('granted');
+
+    if (u === VALID_USER && p === VALID_PASS) {
+      msg.textContent = "";
+      granted.classList.add('show');
+
+      setTimeout(function() {
+        window.location.href = "riddle.html";
+      }, 2000);
+    } else {
+      granted.classList.remove('show');
+      msg.textContent = "ACCESS DENIED — INVALID CREDENTIALS";
+      msg.className = "msg err";
+    }
+  }
+
+  document.getElementById('pass').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') tryLogin();
+  });
+</script>
+</body>
+</html>
