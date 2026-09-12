@@ -1,5 +1,5 @@
 # ROUND 3 - Campus Quest 5.0
-# SCORP SPIDERMAN HUNT
+# OSCORP SPIDERMAN HUNT
 
 Congratulations, Detectives. You've made it further than most. But the real case starts now.
 
