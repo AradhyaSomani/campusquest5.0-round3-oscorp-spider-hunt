@@ -1,4 +1,5 @@
-# campusquest5.0-round3-oscorp-spider-hunt
+# ROUND 3 - Campus Quest 5.0
+# SCORP SPIDERMAN HUNT
 
 Congratulations, Detectives. You've made it further than most. But the real case starts now.
 
